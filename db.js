@@ -1,2 +1,3 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/RESTful')
+
+module.exports = mongoose.connect('mongodb://localhost/pinterest-clone')
