@@ -2,19 +2,28 @@ const Image = require('../models/Image')
 
 exports.addNewImage = (req, res) => {
   const { url, title } = req.body
-  const record = new ImageModel({
+  const record = new Image({
     url,
     title
   })
   record.save(error => {
-    if(error) return res.send('Problem saving new record to database')
+    if (error) return res.send('Problem saving new record to database')
     res.send(record)
   })
 }
 
 exports.getImages = (req, res) => {
   Image.find({}, (err, images) => {
-    if(err) return res.status(500).send('Problem retrieving images from database')
+    if (err) return res.status(500).send('Problem retrieving images from database')
     res.status(200).send(images)
+  })
+}
+
+exports.deleteImage = (req, res) => {
+  console.log(req.body.id)
+  Image.findByIdAndRemove(req.body.id, (err, image) => {
+    if (err) return res.status(500).send('Problem deleting image')
+    if (!image) return res.status(500).send("Couldn't find image")
+    res.status(200).send({ success: true })
   })
 }
