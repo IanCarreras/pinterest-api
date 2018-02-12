@@ -1,13 +1,7 @@
-const express = require('express')
-const router = express.Router()
-
-const bodyParser = require('body-parser')
-
-router.use(bodyParser.urlencoded({ extended: true }))
-router.use(bodyParser.json())
+      const express = require('express')
+      const router = express.Router()
 
 const User = require('../models/User')
-
 
 //post a user
 router.post('/', (req, res) => {
